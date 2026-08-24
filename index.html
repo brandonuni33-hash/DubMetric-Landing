@@ -11,242 +11,297 @@
   <meta property="og:url" content="https://dubmetric.com/">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="demo.css">
+  <link rel="stylesheet" href="benchmark.css">
 </head>
 <body>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
 
-<header class="topbar">
-  <a class="brand" href="#top">DubMetric</a>
-  <nav aria-label="Main navigation">
-    <a href="#how-it-works">How it works</a>
-    <a href="#example">Example</a>
-    <a href="#checks">What it checks</a>
-    <a href="#pilot" class="nav-cta">Request a pilot</a>
-  </nav>
-</header>
-
-<main id="top">
-
-  <!-- ============================================================
-       Section 1 — Hero
-       ============================================================ -->
-  <section class="hero" aria-labelledby="hero-title">
-    <p class="eyebrow">Private beta · For dubbing &amp; localization professionals</p>
-    <h1 id="hero-title">Automated synchronization QC for dubbed&nbsp;content</h1>
-    <p class="hero-copy">
-      DubMetric compares a reference master with a dubbed version and
-      measures where the two drift apart — so sync problems are found
-      and reviewed before delivery, not after.
-    </p>
-    <div class="cta-row">
-      <a class="btn btn-primary" href="#pilot">Request a pilot</a>
-      <a class="btn btn-secondary" href="#how-it-works">See how it works</a>
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="#top" aria-label="DubMetric home">
+        <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span>DubMetric</span>
+      </a>
+      <nav aria-label="Main navigation">
+        <a href="#demo">Demo</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#checks">Checks</a>
+        <a href="#pilot" class="nav-cta">Request pilot</a>
+      </nav>
     </div>
-    <p class="hero-note">
-      Designed to flag what deserves closer human review — not to replace it.
-    </p>
-  </section>
+  </header>
 
-  <!-- ============================================================
-       Section 2 — How it works
-       ============================================================ -->
-  <section id="how-it-works" class="section" aria-labelledby="how-title">
-    <h2 id="how-title">How it works</h2>
-    <ol class="steps">
-      <li class="step">
-        <span class="step-number" aria-hidden="true">1</span>
-        <h3>Upload</h3>
-        <p>Reference master + dubbed version.</p>
-      </li>
-      <li class="step">
-        <span class="step-number" aria-hidden="true">2</span>
-        <h3>Analyze</h3>
-        <p>DubMetric measures:</p>
-        <ul>
-          <li>global timing offset;</li>
-          <li>progressive drift;</li>
-          <li>suspicious synchronization ranges.</li>
-        </ul>
-      </li>
-      <li class="step">
-        <span class="step-number" aria-hidden="true">3</span>
-        <h3>Review</h3>
-        <p>You receive:</p>
-        <ul>
-          <li>timing measurements and timecodes;</li>
-          <li>a PASS / WARN / FAIL / INCONCLUSIVE result;</li>
-          <li>a downloadable QC report (PDF + JSON).</li>
-        </ul>
-      </li>
-    </ol>
-  </section>
-
-  <!-- ============================================================
-       Section 3 — Example result (clearly labeled as an example)
-       ============================================================ -->
-  <section id="example" class="section section-alt" aria-labelledby="example-title">
-    <h2 id="example-title">Example QC output</h2>
-    <p class="section-note">Illustrative example analysis on synthetic material — not a client result.</p>
-
-    <article class="qc-card" aria-label="Example QC report summary">
-      <header class="qc-head">
-        <span class="qc-label">QC RESULT</span>
-        <span class="status status-warn"><span class="status-dot" aria-hidden="true"></span>WARN</span>
-      </header>
-
-      <dl class="qc-grid">
-        <div class="qc-item">
-          <dt>Global offset</dt>
-          <dd>+148 ms</dd>
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy-block" data-reveal>
+        <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>Private beta · Dubbing sync QC</p>
+        <h1 id="hero-title">Catch sync drift <span>before delivery.</span></h1>
+        <p class="hero-copy">
+          DubMetric compares a reference master with a dubbed version and surfaces timing problems that deserve human review — global offset, progressive drift and suspicious local ranges.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#pilot">Request a private pilot <span aria-hidden="true">↗</span></a>
+          <a class="btn btn-ghost" href="#demo">See verified benchmark</a>
         </div>
-        <div class="qc-item">
-          <dt>Progressive drift</dt>
-          <dd>Detected</dd>
+        <p class="hero-note">Built to support QC teams, not replace editorial judgment.</p>
+      </div>
+
+      <div class="product-stage" data-reveal>
+        <div class="stage-glow" aria-hidden="true"></div>
+        <article class="product-card" aria-label="Verified DubMetric D1 controlled benchmark results">
+          <header class="product-head">
+            <div>
+              <p class="product-kicker">VERIFIED D1 BENCHMARK</p>
+              <p class="product-title">Tears of Steel · controlled defects · 02:15</p>
+            </div>
+            <span class="live-badge"><span aria-hidden="true"></span>Measured</span>
+          </header>
+
+          <div class="motion-tabs" role="tablist" aria-label="Verified benchmark views">
+            <span class="motion-pill" aria-hidden="true"></span>
+            <button type="button" role="tab" aria-selected="true" class="motion-tab is-active" data-tab="offset">Offset</button>
+            <button type="button" role="tab" aria-selected="false" class="motion-tab" data-tab="drift">Drift</button>
+            <button type="button" role="tab" aria-selected="false" class="motion-tab" data-tab="local">Local</button>
+          </div>
+
+          <div class="preview-panel" data-panel="offset">
+            <div class="metric-row">
+              <div>
+                <span class="metric-label">Global offset · known defect +150 ms</span>
+                <strong>+150.000006 <small>ms</small></strong>
+              </div>
+              <span class="status-chip status-fail">FAIL</span>
+            </div>
+            <div class="signal-view" aria-label="Controlled +150 millisecond offset benchmark visualization">
+              <div class="signal-grid" aria-hidden="true"></div>
+              <div class="signal-line signal-reference" aria-hidden="true"></div>
+              <div class="signal-line signal-dubbed" aria-hidden="true"></div>
+              <span class="signal-label signal-label-a">REF</span>
+              <span class="signal-label signal-label-b">TEST</span>
+              <span class="offset-marker">+150 ms injected</span>
+            </div>
+            <p class="panel-note">DubMetric measured <span class="benchmark-proof">+150.000006 ms</span> — absolute error 0.000006 ms, confidence 1.0.</p>
+          </div>
+
+          <div class="preview-panel" data-panel="drift" hidden>
+            <div class="metric-row">
+              <div>
+                <span class="metric-label">Progressive drift · known defect 0 → +300 ms</span>
+                <strong>+300.009 <small>ms end</small></strong>
+              </div>
+              <span class="status-chip status-inconclusive">INCONCLUSIVE</span>
+            </div>
+            <div class="drift-chart" aria-label="Verified progressive drift benchmark visualization">
+              <span class="chart-zero" aria-hidden="true"></span>
+              <span class="chart-line" aria-hidden="true"></span>
+              <span class="chart-point point-a" aria-hidden="true"></span>
+              <span class="chart-point point-b" aria-hidden="true"></span>
+              <span class="chart-point point-c" aria-hidden="true"></span>
+              <small class="chart-start">+0.001 ms</small>
+              <small class="chart-end">+300.009 ms</small>
+            </div>
+            <p class="panel-note">Drift section measured <span class="benchmark-proof">300.0087 ms</span> total, confidence 0.845. Overall verdict stays INCONCLUSIVE because global-offset evidence was insufficient.</p>
+          </div>
+
+          <div class="preview-panel" data-panel="local" hidden>
+            <div class="metric-row">
+              <div>
+                <span class="metric-label">Local anomaly · known defect +100 ms</span>
+                <strong>1 <small>flag</small></strong>
+              </div>
+              <span class="status-chip status-fail">FAIL</span>
+            </div>
+            <div class="range-list">
+              <div class="range-item"><span>01</span><code>00:00:20.500–00:00:22.500</code><em>100.07 ms peak</em></div>
+            </div>
+            <p class="panel-note">The controlled defect was injected from 20–23 s. DubMetric detected one overlapping anomaly with a 100.07 ms peak.</p>
+          </div>
+
+          <footer class="product-foot">
+            <span>Real D1 results · controlled synchronization defects · not R2</span>
+            <span class="report-format">PDF + JSON</span>
+          </footer>
+        </article>
+      </div>
+    </section>
+
+    <section class="signal-strip" aria-label="DubMetric core checks" data-reveal>
+      <div><span class="strip-icon">01</span><p><strong>Global offset</strong><small>Early / late timing</small></p></div>
+      <div><span class="strip-icon">02</span><p><strong>Progressive drift</strong><small>Alignment over time</small></p></div>
+      <div><span class="strip-icon">03</span><p><strong>Local anomalies</strong><small>Reviewable timecodes</small></p></div>
+      <div><span class="strip-icon">04</span><p><strong>QC report</strong><small>PDF + JSON output</small></p></div>
+    </section>
+
+    <section id="demo" class="section demo-section" aria-labelledby="demo-title">
+      <div class="demo-intro">
+        <div data-reveal>
+          <p class="section-kicker">Controlled benchmark</p>
+          <h2 id="demo-title">Measured, not mocked.</h2>
         </div>
-        <div class="qc-item qc-item-wide">
-          <dt>Suspicious ranges</dt>
-          <dd>
-            <ul class="ranges">
-              <li><code>00:01:12.500</code></li>
-              <li><code>00:02:03.000</code></li>
-            </ul>
-          </dd>
+        <p class="demo-intro-copy" data-reveal>
+          Tears of Steel was used as open-licensed source material. Known timing defects were injected before analysis, then passed through DubMetric's real product path. The values below are the unmodified D1 outputs.
+        </p>
+      </div>
+
+      <div class="demo-frame" data-reveal aria-label="Tears of Steel controlled offset benchmark result">
+        <div class="demo-topline">
+          <span class="demo-label">Tears of Steel · D1</span>
+          <span class="demo-duration">135 sec excerpt</span>
         </div>
-        <div class="qc-item">
-          <dt>Report</dt>
-          <dd>PDF + JSON</dd>
+
+        <div class="demo-center">
+          <div class="demo-play" aria-hidden="true"><span>✓</span></div>
+          <h3>+150 ms known defect → +150.000006 ms measured</h3>
+          <p>Absolute error 0.000006 ms · Confidence 1.0 · QC verdict FAIL</p>
         </div>
-      </dl>
 
-      <footer class="qc-foot">
-        Thresholds are provisional; results support — never replace — human QC review.
-      </footer>
-    </article>
-  </section>
-
-  <!-- ============================================================
-       Section 4 — What DubMetric checks
-       ============================================================ -->
-  <section id="checks" class="section" aria-labelledby="checks-title">
-    <h2 id="checks-title">What DubMetric checks</h2>
-    <div class="capability-grid">
-      <article class="capability">
-        <h3>Global Offset</h3>
-        <p>Detect when the dubbed track is consistently early or late.</p>
-      </article>
-      <article class="capability">
-        <h3>Progressive Drift</h3>
-        <p>Identify synchronization that gradually moves out of alignment over time.</p>
-      </article>
-      <article class="capability">
-        <h3>Local Sync Anomalies</h3>
-        <p>Highlight suspicious time ranges that deserve closer QC review.</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       Section 5 — Built for
-       ============================================================ -->
-  <section id="built-for" class="section section-alt" aria-labelledby="builtfor-title">
-    <h2 id="builtfor-title">Built for</h2>
-    <ul class="audience">
-      <li>Dubbing studios</li>
-      <li>Localization teams</li>
-      <li>Post-production</li>
-      <li>Audiovisual QC</li>
-      <li>Audio localization professionals</li>
-    </ul>
-  </section>
-
-  <!-- ============================================================
-       Section 6 — Demo placeholder
-       ============================================================ -->
-  <section id="demo" class="section" aria-labelledby="demo-title">
-    <h2 id="demo-title">Demo</h2>
-    <!-- Demo media slot: replace this card with a lightweight embed when
-         the video is ready, e.g.
-         <video src="assets/demo.webm" controls preload="none"></video>
-         or a hosted-player iframe. Nothing heavy is loaded today. -->
-    <div class="demo-card" data-demo-slot>
-      <p class="demo-line">See DubMetric detect a controlled synchronization defect</p>
-      <p class="demo-soon">30-second product demo coming soon</p>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       Section 7 — Private Pilot
-       ============================================================ -->
-  <section id="pilot" class="section section-alt" aria-labelledby="pilot-title">
-    <h2 id="pilot-title">Private Pilot</h2>
-    <p class="pilot-copy">
-      We are currently looking for a small number of dubbing studios and
-      localization teams to test DubMetric on real cases during the
-      private beta.
-    </p>
-
-    <form id="pilot-form" novalidate>
-      <div class="form-row">
-        <label for="pf-name">Name</label>
-        <input id="pf-name" name="name" type="text" autocomplete="name" required>
-      </div>
-      <div class="form-row">
-        <label for="pf-email">Work email</label>
-        <input id="pf-email" name="email" type="email" autocomplete="email" required>
-      </div>
-      <div class="form-row">
-        <label for="pf-company">Company</label>
-        <input id="pf-company" name="company" type="text" autocomplete="organization" required>
-      </div>
-      <div class="form-row">
-        <label for="pf-role">Role</label>
-        <select id="pf-role" name="role" required>
-          <option value="" selected>Select your role…</option>
-          <option value="dubbing-studio">Dubbing studio lead</option>
-          <option value="localization">Localization manager</option>
-          <option value="post-production">Post-production</option>
-          <option value="av-qc">Audiovisual QC</option>
-          <option value="other">Other</option>
-        </select>
-      </div>
-      <div class="form-row">
-        <label for="pf-message">Message <span class="optional">(optional)</span></label>
-        <textarea id="pf-message" name="message" rows="4"></textarea>
+        <div class="demo-timeline" aria-hidden="true">
+          <span>KNOWN +150 ms</span>
+          <span class="demo-track"></span>
+          <span>MEASURED +150.000006 ms</span>
+        </div>
       </div>
 
-      <button type="submit" class="btn btn-primary">Request a pilot</button>
-      <p id="form-status" class="form-status" role="status"></p>
-      <p class="form-honesty">
-        This site has no backend: submitting opens a pre-filled email in
-        your own mail client. Nothing is stored on this website.
-      </p>
-    </form>
-  </section>
+      <div class="demo-note" data-reveal>
+        <span><strong>Controlled synchronization defect benchmark</strong> · not genuine dubbed-media validation R2</span>
+        <span>(CC) Blender Foundation | mango.blender.org</span>
+      </div>
+    </section>
 
-  <!-- ============================================================
-       Section 8 — Confidentiality / beta note
-       ============================================================ -->
-  <aside class="beta-note" aria-label="Beta notice">
-    <p>
-      DubMetric is currently in private beta. This landing page does not
-      upload, process or store any audio; audio analysis happens only
-      within the pilot itself, under terms agreed with each pilot partner.
-    </p>
-  </aside>
+    <section id="workflow" class="section workflow" aria-labelledby="workflow-title">
+      <div class="section-intro" data-reveal>
+        <p class="section-kicker">Workflow</p>
+        <h2 id="workflow-title">From two masters to a reviewable signal.</h2>
+        <p>Minimal input. Focused output. DubMetric narrows attention to synchronization issues without pretending to replace professional QC.</p>
+      </div>
 
-</main>
+      <ol class="steps">
+        <li class="step" data-reveal>
+          <div class="step-top"><span>01</span><i aria-hidden="true">↗</i></div>
+          <h3>Upload</h3>
+          <p>Reference master + dubbed version.</p>
+          <small>Two source files. One comparison.</small>
+        </li>
+        <li class="step" data-reveal>
+          <div class="step-top"><span>02</span><i aria-hidden="true">↗</i></div>
+          <h3>Analyze</h3>
+          <p>Measure offset, drift and suspicious ranges.</p>
+          <small>Timing evidence is surfaced automatically.</small>
+        </li>
+        <li class="step" data-reveal>
+          <div class="step-top"><span>03</span><i aria-hidden="true">↗</i></div>
+          <h3>Review</h3>
+          <p>Inspect timecodes and export the QC report.</p>
+          <small>PASS / WARN / FAIL / INCONCLUSIVE.</small>
+        </li>
+      </ol>
+    </section>
 
-<!-- ============================================================
-     Section 9 — Footer
-     ============================================================ -->
-<footer class="footer">
-  <p>© 2026 DubMetric</p>
-  <p class="footer-tagline">Automated synchronization quality control for dubbed content.</p>
-  <p class="footer-links">
-    <span class="placeholder-link" title="Page not published yet">Privacy</span>
-    <a href="mailto:pilot@dubmetric.com">Contact</a>
-  </p>
-</footer>
+    <section id="checks" class="section split-section" aria-labelledby="checks-title">
+      <div class="section-intro sticky-intro" data-reveal>
+        <p class="section-kicker">What it checks</p>
+        <h2 id="checks-title">Three failure modes. One review surface.</h2>
+        <p>Each check answers a different synchronization question and returns evidence that a human reviewer can verify.</p>
+      </div>
 
-<script src="script.js"></script>
+      <div class="check-stack">
+        <article class="check-card" data-reveal>
+          <span class="check-index">01</span>
+          <div><h3>Global Offset</h3><p>Detect when the dubbed track is consistently early or late against the reference.</p></div>
+          <span class="mini-readout">+150.000006 ms</span>
+        </article>
+        <article class="check-card" data-reveal>
+          <span class="check-index">02</span>
+          <div><h3>Progressive Drift</h3><p>Identify alignment that gradually moves away from the reference over time.</p></div>
+          <span class="mini-readout">+300.009 ms</span>
+        </article>
+        <article class="check-card" data-reveal>
+          <span class="check-index">03</span>
+          <div><h3>Local Sync Anomalies</h3><p>Highlight suspicious time ranges that deserve closer editorial review.</p></div>
+          <span class="mini-readout">1 FLAG · 100.07 ms</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="section audience-section" aria-labelledby="audience-title">
+      <div class="section-intro centered" data-reveal>
+        <p class="section-kicker">Built for real QC workflows</p>
+        <h2 id="audience-title">For teams that deliver dubbed content.</h2>
+      </div>
+      <div class="audience-grid" data-reveal>
+        <span>Dubbing studios</span>
+        <span>Localization teams</span>
+        <span>Post-production</span>
+        <span>Audiovisual QC</span>
+      </div>
+    </section>
+
+    <section id="pilot" class="section pilot-section" aria-labelledby="pilot-title">
+      <div class="pilot-shell">
+        <div class="pilot-copy" data-reveal>
+          <p class="section-kicker">Private pilot</p>
+          <h2 id="pilot-title">Test DubMetric on a real synchronization case.</h2>
+          <p>We are looking for a small number of dubbing studios and localization teams to test the private beta on real material under agreed pilot terms.</p>
+          <div class="pilot-meta">
+            <span><strong>01</strong> Real-case evaluation</span>
+            <span><strong>02</strong> Human-reviewed output</span>
+            <span><strong>03</strong> Direct product feedback</span>
+          </div>
+        </div>
+
+        <form id="pilot-form" novalidate data-reveal>
+          <div class="form-grid">
+            <div class="form-row">
+              <label for="pf-name">Name</label>
+              <input id="pf-name" name="name" type="text" autocomplete="name" placeholder="Your name" required>
+            </div>
+            <div class="form-row">
+              <label for="pf-email">Work email</label>
+              <input id="pf-email" name="email" type="email" autocomplete="email" placeholder="name@company.com" required>
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="form-row">
+              <label for="pf-company">Company</label>
+              <input id="pf-company" name="company" type="text" autocomplete="organization" placeholder="Company" required>
+            </div>
+            <div class="form-row">
+              <label for="pf-role">Role</label>
+              <select id="pf-role" name="role" required>
+                <option value="" selected>Select role…</option>
+                <option value="dubbing-studio">Dubbing studio lead</option>
+                <option value="localization">Localization manager</option>
+                <option value="post-production">Post-production</option>
+                <option value="av-qc">Audiovisual QC</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <label for="pf-message">Message <span class="optional">optional</span></label>
+            <textarea id="pf-message" name="message" rows="4" placeholder="Tell us about the workflow or sync issue you want to test."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary form-submit">Request private pilot <span aria-hidden="true">↗</span></button>
+          <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+          <p class="form-honesty">Submitting opens a pre-filled email in your mail client. This static site does not store form data.</p>
+        </form>
+      </div>
+    </section>
+
+    <aside class="beta-note" aria-label="Beta notice" data-reveal>
+      <span>Private beta</span>
+      <p>DubMetric is currently in private beta. This website does not upload, process or store audio. Pilot analysis happens separately under terms agreed with each pilot partner.</p>
+    </aside>
+  </main>
+
+  <footer class="footer">
+    <a class="brand footer-brand" href="#top"><span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span><span>DubMetric</span></a>
+    <p>Automated synchronization quality control for dubbed content.</p>
+    <div class="footer-links"><a href="mailto:pilot@dubmetric.com">pilot@dubmetric.com</a><span>© 2026 DubMetric</span></div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
