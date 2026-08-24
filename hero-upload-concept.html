@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DubMetric — Hero + Upload concept</title>
+<meta name="description" content="Single-screen premium concept: hero visual and real upload interaction, one fold.">
+<style>
+  :root {
+    --bg: #08090b;
+    --bg-soft: #0d0f12;
+    --panel-solid: #121418;
+    --panel-raised: #171a1f;
+    --line: rgba(255,255,255,.09);
+    --line-strong: rgba(255,255,255,.16);
+    --ink: #f4f1ea;
+    --muted: #98999d;
+    --muted-strong: #bebfc2;
+    --champagne: #d8bd89;
+    --champagne-soft: rgba(216,189,137,.12);
+    --cold-blue: #8fa9c0;
+    --radius-sm: 12px;
+    --radius: 20px;
+    --radius-lg: 30px;
+    --shadow: 0 32px 90px rgba(0,0,0,.45);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { height:100%; }
+  body {
+    font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background:
+      radial-gradient(1100px 640px at 80% -12%, rgba(216,189,137,.06), transparent 60%),
+      radial-gradient(900px 700px at -6% 112%, rgba(143,169,192,.05), transparent 55%),
+      var(--bg);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Single above-the-fold section                                       */
+  /* ------------------------------------------------------------------ */
+  .fold {
+    min-height: 100svh;
+    max-width: 1460px;
+    margin-inline: auto;
+    padding: clamp(24px, 4vw, 64px);
+    display: grid;
+    grid-template-columns: 1.02fr .98fr;
+    gap: clamp(32px, 4vw, 72px);
+    align-items: stretch;
+  }
+
+  /* ------------------------------- HERO ----------------------------- */
+  .hero-stage {
+    position: relative;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--line);
+    background:
+      radial-gradient(72% 60% at 68% 22%, rgba(216,189,137,.09), transparent 62%),
+      radial-gradient(60% 55% at 18% 88%, rgba(143,169,192,.07), transparent 60%),
+      linear-gradient(180deg, var(--bg-soft), var(--panel-solid));
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    display: flex;
+  }
+  .hero-stage::after {           /* faint precision grid, very low key */
+    content:""; position:absolute; inset:0; pointer-events:none;
+    background-image:
+      linear-gradient(rgba(255,255,255,.028) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.028) 1px, transparent 1px);
+    background-size: 84px 84px;
+    mask-image: radial-gradient(75% 70% at 50% 42%, #000 30%, transparent 100%);
+  }
+  .bust-wrap { margin:auto; width:min(78%, 560px); position:relative; z-index:1; }
+  .bust-wrap svg { width:100%; height:auto; display:block; filter: drop-shadow(0 42px 60px rgba(0,0,0,.55)); }
+  .stage-tag {
+    position:absolute; z-index:2; left:28px; bottom:24px;
+    color:#77797e; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; font-weight:700;
+  }
+  .stage-brand {
+    position:absolute; z-index:2; top:26px; left:28px;
+    display:flex; align-items:center; gap:.65rem;
+  }
+  .brand-mark { display:flex; gap:5px; align-items:flex-end; height:22px; }
+  .brand-mark i { display:block; width:5px; border-radius:3px; background:var(--ink); }
+  .brand-mark i:nth-child(2){ height:100%; background:var(--champagne); }
+  .stage-brand b { font-size:.95rem; letter-spacing:.01em; }
+
+  /* --------------------------- PRODUCT PANEL ------------------------ */
+  .product-side { display:flex; }
+  .upload-panel {
+    margin:auto; width:100%; max-width:600px;
+    background: rgba(18,20,24,.82);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    padding: clamp(28px, 3vw, 52px);
+    backdrop-filter: blur(14px);
+  }
+  .eyebrow {
+    display:inline-flex; align-items:center; gap:.6rem;
+    color:var(--champagne); font-size:.68rem; font-weight:800;
+    letter-spacing:.13em; text-transform:uppercase;
+  }
+  .eyebrow-dot { width:.44rem; height:.44rem; border-radius:50%; background:var(--champagne); }
+  .upload-panel h1 {
+    margin-top:1.1rem;
+    font-size: clamp(2.1rem, 3.2vw, 3.1rem);
+    line-height:1.04; font-weight:800; letter-spacing:-.02em;
+  }
+  .upload-panel h1 span { color:#85878b; }
+  .lede { margin-top:1rem; color:var(--muted-strong); font-size:.95rem; line-height:1.65; max-width:34rem; }
+
+  .drop-grid { display:grid; gap:.9rem; margin-top:1.8rem; }
+  .drop-zone { position:relative; display:block; cursor:pointer; }
+  .drop-zone input { position:absolute; inset:0; opacity:0; cursor:pointer; }
+  .dz-box {
+    display:flex; align-items:center; justify-content:space-between; gap:1rem;
+    border:1px dashed var(--line-strong);
+    border-radius: var(--radius);
+    background: rgba(255,255,255,.02);
+    padding: 1.05rem 1.25rem;
+    transition: border-color .18s ease, background .18s ease, transform .18s ease;
+  }
+  .drop-zone:hover .dz-box,
+  .drop-zone:focus-within .dz-box { border-color: var(--champagne); background: var(--champagne-soft); }
+  .drop-zone.is-filled .dz-box { border-style:solid; border-color: var(--line-strong); background: rgba(255,255,255,.04); }
+  .dz-label { display:flex; flex-direction:column; gap:.28rem; }
+  .dz-title { font-size:.8rem; font-weight:750; letter-spacing:.02em; }
+  .dz-title em { font-style:normal; color:var(--champagne); font-size:.62rem; letter-spacing:.11em; text-transform:uppercase; margin-right:.55rem; }
+  .dz-hint { color:#77797e; font-size:.74rem; }
+  .dz-file { color:var(--muted-strong); font-size:.74rem; max-width:15rem; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; direction:rtl; text-align:right; }
+  .dz-icon { flex:0 0 auto; width:38px; height:38px; border-radius:50%;
+    display:grid; place-items:center;
+    background: rgba(255,255,255,.04); border:1px solid var(--line); color:var(--muted-strong); }
+  .drop-zone.is-filled .dz-icon { color:var(--champagne); border-color: rgba(216,189,137,.35); }
+
+  .analyze-btn {
+    margin-top:1.25rem; width:100%;
+    display:inline-flex; align-items:center; justify-content:center; gap:.6rem;
+    border:0; border-radius:999px; padding:1.02rem 1.6rem;
+    background:var(--ink); color:#0c0d0f;
+    font: inherit; font-weight:760; font-size:.98rem; cursor:pointer;
+    transition: transform .16s ease, background .16s ease, opacity .16s ease;
+  }
+  .analyze-btn:hover:enabled { background:#fff; transform: translateY(-1px); }
+  .analyze-btn:disabled { opacity:.38; cursor:not-allowed; }
+  .helper-row { display:flex; justify-content:space-between; align-items:center; gap:1rem; margin-top:.85rem; }
+  .helper { color:#77797e; font-size:.72rem; }
+  .helper b { color:var(--champagne); font-weight:750; }
+  .form-status { min-height:1.15rem; margin-top:.7rem; color:var(--champagne); font-size:.76rem; font-weight:650; }
+  .form-status[data-error="true"] { color:var(--fail); }
+
+  /* ------------------------------ MOBILE ---------------------------- */
+  @media (max-width: 56rem) {
+    .fold { grid-template-columns: 1fr; align-items:start; padding-top:20px; }
+    .hero-stage { order:-1; min-height: 46svh; }
+    .bust-wrap { width:min(64%, 380px); }
+    .upload-panel { padding: 26px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<main class="fold">
+
+  <!-- ============================ HERO VISUAL ============================ -->
+  <section class="hero-stage" aria-label="DubMetric brand visual">
+    <div class="stage-brand"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><b>DubMetric</b></div>
+
+    <div class="bust-wrap">
+      <!-- Premium mannequin bust · glossy black · champagne rim light · no microphone -->
+      <svg viewBox="0 0 560 640" role="img" aria-label="Polished black mannequin bust wearing premium headphones">
+        <defs>
+          <linearGradient id="headGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0"   stop-color="#262a31"/>
+            <stop offset=".45" stop-color="#12151a"/>
+            <stop offset="1"   stop-color="#0a0b0e"/>
+          </linearGradient>
+          <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0"   stop-color="#ffffff" stop-opacity=".14"/>
+            <stop offset=".28" stop-color="#ffffff" stop-opacity=".03"/>
+            <stop offset=".72" stop-color="#ffffff" stop-opacity="0"/>
+            <stop offset="1"   stop-color="#8fa9c0" stop-opacity=".07"/>
+          </linearGradient>
+          <linearGradient id="chromeEdge" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0"   stop-color="#d8bd89"/>
+            <stop offset=".5"  stop-color="#9fb4c7"/>
+            <stop offset="1"   stop-color="#d8bd89" stop-opacity=".25"/>
+          </linearGradient>
+          <radialGradient id="cupGrad" cx=".35" cy=".3" r="1">
+            <stop offset="0"  stop-color="#30353d"/>
+            <stop offset=".5" stop-color="#15181d"/>
+            <stop offset="1"  stop-color="#0b0c0f"/>
+          </radialGradient>
+          <radialGradient id="floorGlow" cx=".5" cy=".5" r=".5">
+            <stop offset="0" stop-color="#d8bd89" stop-opacity=".14"/>
+            <stop offset="1" stop-color="#d8bd89" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="fadeReflex" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#fff" stop-opacity=".09"/>
+            <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+          </linearGradient>
+          <mask id="reflexMask">
+            <rect x="0" y="520" width="560" height="120" fill="url(#fadeReflex)"/>
+          </mask>
+        </defs>
+
+        <ellipse cx="280" cy="560" rx="215" ry="34" fill="url(#floorGlow)"/>
+        <ellipse cx="280" cy="556" rx="150" ry="17" fill="#000" opacity=".55"/>
+
+        <!-- reflection -->
+        <g mask="url(#reflexMask)" transform="translate(0,1112) scale(1,-1)" opacity=".8">
+          <path d="M170 470 q0 -66 110 -66 q110 0 110 66 l0 46 -220 0 Z" fill="url(#headGrad)"/>
+        </g>
+
+        <!-- shoulders / pedestal -->
+        <path d="M132 556 C138 486 196 452 280 452 C364 452 422 486 428 556
+                 L428 566 Q428 574 420 574 L140 574 Q132 574 132 566 Z"
+              fill="url(#headGrad)" stroke="url(#chromeEdge)" stroke-width="1.4"/>
+        <path d="M132 556 C138 486 196 452 280 452 C364 452 422 486 428 556 L428 560 L132 560 Z"
+              fill="url(#sheen)" opacity=".5"/>
+
+        <!-- neck -->
+        <path d="M240 372 h80 v54 q0 34 -40 34 q-40 0 -40 -34 Z"
+              fill="url(#headGrad)"/>
+        <path d="M240 392 q40 18 80 0 l0 -20 h-80 Z" fill="#000" opacity=".28"/>
+
+        <!-- head -->
+        <path d="M280 96 C354 96 400 152 400 232 C400 306 350 372 280 372
+                 C210 372 160 306 160 232 C160 152 206 96 280 96 Z"
+              fill="url(#headGrad)" stroke="#000" stroke-opacity=".4"/>
+        <path d="M280 96 C354 96 400 152 400 232 C400 306 350 372 280 372
+                 C210 372 160 306 160 232 C160 152 206 96 280 96 Z"
+              fill="url(#sheen)"/>
+        <path d="M198 150 C216 118 246 102 280 102 C234 110 208 142 200 178 Z"
+              fill="#ffffff" opacity=".05"/>
+
+        <!-- headphone band -->
+        <path d="M172 218 C168 128 216 74 280 74 C344 74 392 128 388 218"
+              fill="none" stroke="#0d0f13" stroke-width="26" stroke-linecap="round"/>
+        <path d="M172 218 C168 128 216 74 280 74 C344 74 392 128 388 218"
+              fill="none" stroke="url(#chromeEdge)" stroke-width="3" stroke-linecap="round" opacity=".9"/>
+
+        <!-- ear cups -->
+        <g>
+          <rect x="136" y="212" width="64" height="104" rx="30" fill="url(#cupGrad)" stroke="#000" stroke-opacity=".5"/>
+          <rect x="148" y="228" width="40" height="72" rx="20" fill="none" stroke="#d8bd89" stroke-opacity=".5" stroke-width="1.6"/>
+          <ellipse cx="158" cy="240" rx="9" ry="16" fill="#ffffff" opacity=".08"/>
+          <rect x="360" y="212" width="64" height="104" rx="30" fill="url(#cupGrad)" stroke="#000" stroke-opacity=".5"/>
+          <rect x="372" y="228" width="40" height="72" rx="20" fill="none" stroke="#d8bd89" stroke-opacity=".5" stroke-width="1.6"/>
+          <ellipse cx="382" cy="240" rx="9" ry="16" fill="#8fa9c0" opacity=".10"/>
+        </g>
+
+        <!-- rim lights -->
+        <path d="M186 300 C176 262 176 210 190 172" fill="none" stroke="#d8bd89"
+              stroke-width="2.4" stroke-linecap="round" opacity=".5"/>
+        <path d="M376 296 C386 260 386 214 372 176" fill="none" stroke="#8fa9c0"
+              stroke-width="2" stroke-linecap="round" opacity=".38"/>
+        <path d="M150 500 C170 468 216 450 262 447" fill="none" stroke="#d8bd89"
+              stroke-width="2" stroke-linecap="round" opacity=".3"/>
+      </svg>
+    </div>
+
+    <p class="stage-tag">Precision audio QC</p>
+  </section>
+
+  <!-- ========================== UPLOAD PANEL ============================= -->
+  <section class="product-side">
+    <form class="upload-panel" id="analyze-form" novalidate>
+      <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>Private beta · Dubbing sync QC</p>
+      <h1>Catch dubbing sync errors <span>before delivery.</span></h1>
+      <p class="lede">Compare a reference master with a dubbed version to detect global offset, progressive drift and local sync anomalies.</p>
+
+      <div class="drop-grid">
+        <label class="drop-zone" data-zone="reference">
+          <input type="file" id="file-reference" accept=".wav,audio/wav,audio/x-wav">
+          <span class="dz-box">
+            <span class="dz-label">
+              <span class="dz-title"><em>Input 1</em>Reference master</span>
+              <span class="dz-hint">Original mix · WAV</span>
+            </span>
+            <span class="dz-file" data-file>Choose file</span>
+            <span class="dz-icon" aria-hidden="true">↑</span>
+          </span>
+        </label>
+
+        <label class="drop-zone" data-zone="dubbed">
+          <input type="file" id="file-dubbed" accept=".wav,audio/wav,audio/x-wav">
+          <span class="dz-box">
+            <span class="dz-label">
+              <span class="dz-title"><em>Input 2</em>Dubbed master</span>
+              <span class="dz-hint">Dubbed mix · same rate</span>
+            </span>
+            <span class="dz-file" data-file>Choose file</span>
+            <span class="dz-icon" aria-hidden="true">↑</span>
+          </span>
+        </label>
+      </div>
+
+      <button type="submit" class="analyze-btn" id="analyze-btn" disabled>Analyze synchronization</button>
+
+      <div class="helper-row">
+        <p class="helper"><b>Beta</b> · PCM WAV · Up to 3 minutes per file</p>
+      </div>
+      <p class="form-status" id="form-status" role="status"></p>
+      <p class="helper" style="margin-top:.2rem;">This concept preview does not process audio. Analysis runs in the local DubMetric beta app.</p>
+    </form>
+  </section>
+
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var form = document.getElementById("analyze-form");
+  var btn = document.getElementById("analyze-btn");
+  var status = document.getElementById("form-status");
+  var refInput = document.getElementById("file-reference");
+  var dubInput = document.getElementById("file-dubbed");
+
+  function refresh() {
+    var ready = refInput.files.length > 0 && dubInput.files.length > 0;
+    btn.disabled = !ready;
+    [ [refInput, "[data-zone='reference']"],
+      [dubInput, "[data-zone='dubbed']"] ].forEach(function (pair) {
+      var zone = document.querySelector(pair[1]);
+      zone.classList.toggle("is-filled", pair[0].files.length > 0);
+      zone.querySelector("[data-file]").textContent =
+        pair[0].files.length ? pair[0].files[0].name : "Choose file";
+    });
+  }
+
+  refInput.addEventListener("change", refresh);
+  dubInput.addEventListener("change", refresh);
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    if (btn.disabled) return;
+    status.setAttribute("data-error", "true");
+    status.textContent =
+      "Concept preview only - run the local DubMetric beta app to analyze.";
+  });
+})();
+</script>
+
+</body>
+</html>
