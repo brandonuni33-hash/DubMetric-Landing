@@ -12,6 +12,7 @@
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="demo.css">
+  <link rel="stylesheet" href="benchmark.css">
 </head>
 <body>
   <div class="ambient ambient-one" aria-hidden="true"></div>
@@ -42,23 +43,23 @@
         </p>
         <div class="cta-row">
           <a class="btn btn-primary" href="#pilot">Request a private pilot <span aria-hidden="true">↗</span></a>
-          <a class="btn btn-ghost" href="#demo">Watch the demo</a>
+          <a class="btn btn-ghost" href="#demo">See verified benchmark</a>
         </div>
         <p class="hero-note">Built to support QC teams, not replace editorial judgment.</p>
       </div>
 
       <div class="product-stage" data-reveal>
         <div class="stage-glow" aria-hidden="true"></div>
-        <article class="product-card" aria-label="Illustrative DubMetric QC interface preview">
+        <article class="product-card" aria-label="Verified DubMetric D1 controlled benchmark results">
           <header class="product-head">
             <div>
-              <p class="product-kicker">CONTROLLED SAMPLE</p>
-              <p class="product-title">Synthetic sync defect · 02:18</p>
+              <p class="product-kicker">VERIFIED D1 BENCHMARK</p>
+              <p class="product-title">Tears of Steel · controlled defects · 02:15</p>
             </div>
-            <span class="live-badge"><span aria-hidden="true"></span>Preview</span>
+            <span class="live-badge"><span aria-hidden="true"></span>Measured</span>
           </header>
 
-          <div class="motion-tabs" role="tablist" aria-label="QC preview views">
+          <div class="motion-tabs" role="tablist" aria-label="Verified benchmark views">
             <span class="motion-pill" aria-hidden="true"></span>
             <button type="button" role="tab" aria-selected="true" class="motion-tab is-active" data-tab="offset">Offset</button>
             <button type="button" role="tab" aria-selected="false" class="motion-tab" data-tab="drift">Drift</button>
@@ -68,59 +69,58 @@
           <div class="preview-panel" data-panel="offset">
             <div class="metric-row">
               <div>
-                <span class="metric-label">Global offset</span>
-                <strong>+148 <small>ms</small></strong>
+                <span class="metric-label">Global offset · known defect +150 ms</span>
+                <strong>+150.000006 <small>ms</small></strong>
               </div>
-              <span class="status-chip status-warn">WARN</span>
+              <span class="status-chip status-fail">FAIL</span>
             </div>
-            <div class="signal-view" aria-label="Illustrative timing signal">
+            <div class="signal-view" aria-label="Controlled +150 millisecond offset benchmark visualization">
               <div class="signal-grid" aria-hidden="true"></div>
               <div class="signal-line signal-reference" aria-hidden="true"></div>
               <div class="signal-line signal-dubbed" aria-hidden="true"></div>
               <span class="signal-label signal-label-a">REF</span>
-              <span class="signal-label signal-label-b">DUB</span>
-              <span class="offset-marker">+148 ms</span>
+              <span class="signal-label signal-label-b">TEST</span>
+              <span class="offset-marker">+150 ms injected</span>
             </div>
-            <p class="panel-note">The dubbed version is consistently late against the reference.</p>
+            <p class="panel-note">DubMetric measured <span class="benchmark-proof">+150.000006 ms</span> — absolute error 0.000006 ms, confidence 1.0.</p>
           </div>
 
           <div class="preview-panel" data-panel="drift" hidden>
             <div class="metric-row">
               <div>
-                <span class="metric-label">Progressive drift</span>
-                <strong>Detected</strong>
+                <span class="metric-label">Progressive drift · known defect 0 → +300 ms</span>
+                <strong>+300.009 <small>ms end</small></strong>
               </div>
-              <span class="status-chip status-warn">WARN</span>
+              <span class="status-chip status-inconclusive">INCONCLUSIVE</span>
             </div>
-            <div class="drift-chart" aria-label="Illustrative progressive drift chart">
+            <div class="drift-chart" aria-label="Verified progressive drift benchmark visualization">
               <span class="chart-zero" aria-hidden="true"></span>
               <span class="chart-line" aria-hidden="true"></span>
               <span class="chart-point point-a" aria-hidden="true"></span>
               <span class="chart-point point-b" aria-hidden="true"></span>
               <span class="chart-point point-c" aria-hidden="true"></span>
-              <small class="chart-start">00:00</small>
-              <small class="chart-end">02:18</small>
+              <small class="chart-start">+0.001 ms</small>
+              <small class="chart-end">+300.009 ms</small>
             </div>
-            <p class="panel-note">Alignment progressively moves away from the reference over time.</p>
+            <p class="panel-note">Drift section measured <span class="benchmark-proof">300.0087 ms</span> total, confidence 0.845. Overall verdict stays INCONCLUSIVE because global-offset evidence was insufficient.</p>
           </div>
 
           <div class="preview-panel" data-panel="local" hidden>
             <div class="metric-row">
               <div>
-                <span class="metric-label">Suspicious ranges</span>
-                <strong>2 <small>flags</small></strong>
+                <span class="metric-label">Local anomaly · known defect +100 ms</span>
+                <strong>1 <small>flag</small></strong>
               </div>
-              <span class="status-chip status-review">REVIEW</span>
+              <span class="status-chip status-fail">FAIL</span>
             </div>
             <div class="range-list">
-              <div class="range-item"><span>01</span><code>00:01:12.500</code><em>local deviation</em></div>
-              <div class="range-item"><span>02</span><code>00:02:03.000</code><em>local deviation</em></div>
+              <div class="range-item"><span>01</span><code>00:00:20.500–00:00:22.500</code><em>100.07 ms peak</em></div>
             </div>
-            <p class="panel-note">Timecodes point reviewers directly to areas worth checking.</p>
+            <p class="panel-note">The controlled defect was injected from 20–23 s. DubMetric detected one overlapping anomaly with a 100.07 ms peak.</p>
           </div>
 
           <footer class="product-foot">
-            <span>Illustrative interface preview · synthetic material</span>
+            <span>Real D1 results · controlled synchronization defects · not R2</span>
             <span class="report-format">PDF + JSON</span>
           </footer>
         </article>
@@ -137,36 +137,36 @@
     <section id="demo" class="section demo-section" aria-labelledby="demo-title">
       <div class="demo-intro">
         <div data-reveal>
-          <p class="section-kicker">Product demo</p>
-          <h2 id="demo-title">See DubMetric in action.</h2>
+          <p class="section-kicker">Controlled benchmark</p>
+          <h2 id="demo-title">Measured, not mocked.</h2>
         </div>
         <p class="demo-intro-copy" data-reveal>
-          This is the dedicated video slot for the 30–45 second product walkthrough: source comparison, detected timing issue, reviewable timecodes and final QC output.
+          Tears of Steel was used as open-licensed source material. Known timing defects were injected before analysis, then passed through DubMetric's real product path. The values below are the unmodified D1 outputs.
         </p>
       </div>
 
-      <div class="demo-frame" data-reveal aria-label="Reserved video demonstration area">
+      <div class="demo-frame" data-reveal aria-label="Tears of Steel controlled offset benchmark result">
         <div class="demo-topline">
-          <span class="demo-label">Product walkthrough</span>
-          <span class="demo-duration">30–45 sec</span>
+          <span class="demo-label">Tears of Steel · D1</span>
+          <span class="demo-duration">135 sec excerpt</span>
         </div>
 
         <div class="demo-center">
-          <div class="demo-play" aria-hidden="true"><span>▶</span></div>
-          <h3>Demo video goes here</h3>
-          <p>The real DubMetric walkthrough will replace this placeholder without changing the surrounding layout.</p>
+          <div class="demo-play" aria-hidden="true"><span>✓</span></div>
+          <h3>+150 ms known defect → +150.000006 ms measured</h3>
+          <p>Absolute error 0.000006 ms · Confidence 1.0 · QC verdict FAIL</p>
         </div>
 
         <div class="demo-timeline" aria-hidden="true">
-          <span>00:00</span>
+          <span>KNOWN +150 ms</span>
           <span class="demo-track"></span>
-          <span>00:35</span>
+          <span>MEASURED +150.000006 ms</span>
         </div>
       </div>
 
       <div class="demo-note" data-reveal>
-        <span><strong>Reserved media slot</strong> · no fake product footage</span>
-        <span>16:9 · ready for MP4/WebM embed</span>
+        <span><strong>Controlled synchronization defect benchmark</strong> · not genuine dubbed-media validation R2</span>
+        <span>(CC) Blender Foundation | mango.blender.org</span>
       </div>
     </section>
 
@@ -210,17 +210,17 @@
         <article class="check-card" data-reveal>
           <span class="check-index">01</span>
           <div><h3>Global Offset</h3><p>Detect when the dubbed track is consistently early or late against the reference.</p></div>
-          <span class="mini-readout">+148 ms</span>
+          <span class="mini-readout">+150.000006 ms</span>
         </article>
         <article class="check-card" data-reveal>
           <span class="check-index">02</span>
           <div><h3>Progressive Drift</h3><p>Identify alignment that gradually moves away from the reference over time.</p></div>
-          <span class="mini-readout">DRIFT</span>
+          <span class="mini-readout">+300.009 ms</span>
         </article>
         <article class="check-card" data-reveal>
           <span class="check-index">03</span>
           <div><h3>Local Sync Anomalies</h3><p>Highlight suspicious time ranges that deserve closer editorial review.</p></div>
-          <span class="mini-readout">02 FLAGS</span>
+          <span class="mini-readout">1 FLAG · 100.07 ms</span>
         </article>
       </div>
     </section>
