@@ -1,0 +1,17 @@
+# OS noise
+.DS_Store
+Thumbs.db
+
+# Editor
+*.swp
+.idea/
+.vscode/
+
+# Vercel local artifacts
+.vercel/
+
+# Never commit environment files or secrets of any kind
+.env
+.env.*
+*.pem
+*.key
