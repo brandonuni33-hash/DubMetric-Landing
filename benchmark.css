@@ -1,0 +1,18 @@
+/* Verified D1 benchmark presentation only. Keeps the premium landing design intact. */
+
+.status-fail {
+  color: var(--fail);
+  background: rgba(223, 116, 116, 0.10);
+  border: 1px solid rgba(223, 116, 116, 0.20);
+}
+
+.status-inconclusive {
+  color: var(--muted-strong);
+  background: rgba(190, 191, 194, 0.08);
+  border: 1px solid rgba(190, 191, 194, 0.16);
+}
+
+.benchmark-proof {
+  color: var(--champagne);
+  font-variant-numeric: tabular-nums;
+}
