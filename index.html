@@ -137,37 +137,29 @@
     <section id="demo" class="section demo-section" aria-labelledby="demo-title">
       <div class="demo-intro">
         <div data-reveal>
-          <p class="section-kicker">Controlled benchmark</p>
-          <h2 id="demo-title">Measured, not mocked.</h2>
+          <p class="section-kicker">Product demo</p>
+          <h2 id="demo-title">See DubMetric in action.</h2>
         </div>
         <p class="demo-intro-copy" data-reveal>
-          Tears of Steel was used as open-licensed source material. Known timing defects were injected before analysis, then passed through DubMetric's real product path. The values below are the unmodified D1 outputs.
+          See the real DubMetric workflow: upload a reference master and dubbed master, run synchronization QC, review the detected offset, drift and local anomalies, then export the report.
         </p>
       </div>
 
-      <div class="demo-frame" data-reveal aria-label="Tears of Steel controlled offset benchmark result">
-        <div class="demo-topline">
-          <span class="demo-label">Tears of Steel · D1</span>
-          <span class="demo-duration">135 sec excerpt</span>
-        </div>
-
-        <div class="demo-center">
-          <div class="demo-play" aria-hidden="true"><span>✓</span></div>
-          <h3>+150 ms known defect → +150.000006 ms measured</h3>
-          <p>Absolute error 0.000006 ms · Confidence 1.0 · QC verdict FAIL</p>
-        </div>
-
-        <div class="demo-timeline" aria-hidden="true">
-          <span>KNOWN +150 ms</span>
-          <span class="demo-track"></span>
-          <span>MEASURED +150.000006 ms</span>
-        </div>
+      <div class="demo-video-shell" data-reveal>
+        <video
+          class="demo-video"
+          controls
+          preload="metadata"
+          playsinline
+          poster="assets/demo/dubmetric-demo-poster.jpg"
+          aria-label="DubMetric product demonstration"
+        >
+          <source src="assets/demo/dubmetric-demo.mp4" type="video/mp4">
+          Your browser does not support HTML5 video.
+        </video>
       </div>
 
-      <div class="demo-note" data-reveal>
-        <span><strong>Controlled synchronization defect benchmark</strong> · not genuine dubbed-media validation R2</span>
-        <span>(CC) Blender Foundation | mango.blender.org</span>
-      </div>
+      <p class="demo-caption" data-reveal>Controlled demo material · Actual DubMetric product workflow</p>
     </section>
 
     <section id="workflow" class="section workflow" aria-labelledby="workflow-title">
